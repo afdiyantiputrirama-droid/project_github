@@ -3,12 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Page</title>
+    <title>Lorem Ipsum — Simple & Cool</title>
+    <meta name="description" content="Halaman simpel dan keren yang memperkenalkan Lorem Ipsum">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <h1>Welcome to My Web Page</h1>
-    <p>This is a simple HTML page</p>
-    
+    <div class="card" role="main">
+        <header>
+            <div class="brand">
+                <div class="logo">LI</div>
+                <div>
+                    <h1>Lorem Ipsum</h1>
+                    <p class="lead">Contoh teks placeholder klasik — sederhana, elegan, siap dipakai.</p>
+                </div>
+            </div>
+            <nav class="meta">
+                <div class="small">Minimal · Responsif · Aesthetic</div>
+                <div style="display:flex;gap:8px;align-items:center">
+                    <button class="btn" id="genBtn">Generate</button>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content">
+                <h2 style="margin-top:0">Apa itu Lorem Ipsum?</h2>
+                <p class="small">Lorem Ipsum adalah teks yang biasa digunakan sebagai contoh dalam tata letak dan percetakan. Teks ini telah menjadi standar industri sejak abad ke-16, saat seorang pencetak mengacak-acak huruf untuk membuat contoh tata letak buku.</p>
+
+                <div style="height:12px"></div>
+                <div class="panel">
+                    <strong>Contoh singkat</strong>
+                    <div style="height:10px"></div>
+                    <pre class="snippet" id="snippet">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</pre>
+                </div>
+
+                <div style="height:14px"></div>
+                <h3 style="margin-bottom:8px">Kenapa dipakai?</h3>
+                <ul class="small" style="margin-top:0">
+                    <li>Menampilkan tipografi dan tata letak tanpa distraksi konten nyata.</li>
+                    <li>Membantu desainer dan pengembang melihat skala dan flow teks.</li>
+                    <li>Mudah dimodifikasi untuk kebutuhan demo atau prototipe.</li>
+                </ul>
+            </section>
+
+            <aside>
+                <div class="panel">
+                    <strong>Quick facts</strong>
+                    <div style="height:8px"></div>
+                    <div class="small">Origin: 1500-an<br>Format: Placeholder text<br>Use: Design & Mockups</div>
+                    <div style="height:12px"></div>
+                    <div style="display:flex;gap:8px">
+                        <button class="btn" data-length="short">Short</button>
+                        <button class="btn" data-length="medium">Medium</button>
+                        <button class="btn" data-length="long">Long</button>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            <div class="small">Made with ♥ — Example Lorem Ipsum page</div>
+            <div class="small">Share · Export · Use</div>
+        </footer>
+    </div>
+
+    <svg class="wave" width="0" height="0" aria-hidden="true"><defs></defs></svg>
+
+    <script>
+        const short = 'Lorem ipsum dolor sit amet.';
+        const medium = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.';
+        const longTxt = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.';
+
+        function setSnippet(text){
+            document.getElementById('snippet').textContent = text;
+        }
+
+        document.getElementById('genBtn').addEventListener('click', ()=>{
+            // rotate through samples
+            const cur = document.getElementById('snippet').textContent;
+            if(cur === short) setSnippet(medium);
+            else if(cur === medium) setSnippet(longTxt);
+            else setSnippet(short);
+        });
+
+        document.querySelectorAll('[data-length]').forEach(btn=>{
+            btn.addEventListener('click', ()=> setSnippet({short,medium,long:longTxt}[btn.dataset.length] || medium));
+        });
+    </script>
 </body>
 </html>
